@@ -12,7 +12,7 @@ Example
 -------
 The two images above show an isosurface of a scalar field generated with the following command:
 ```
-gaspar --filename="grid" --N=9--invariant="inv.txt"
+gaspar --filename="grid" --N=9 --invariant="inv.txt"
 ``` 
 The left image is the low resolution grid (`--N=9` means a 9x9x9 grid) that will be fed into an isosurface extraction algorithm (e.g., [Marching Cubes](http://en.wikipedia.org/wiki/Marching_cubes)). The image on the right is the _expected, correct, implicit trilinear surface_. It is the golden standard. By visual inspection, the user can determine that the two isosurfaces are very different. Alternatively, the user can save the topological information in a file (`inv.txt`) so that no visual inspection is needed. For the case shown in the right image, the expected topology is:
 ```
