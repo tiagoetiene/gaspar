@@ -40,8 +40,8 @@ Publication
 
 Gaspar implementation is based on the paper below. The paper extends the idea of verification to include the topology of isosurface extraction techniques.
 
-T. Etiene,L. G. Nonato,	C. Scheidegger,	J. Tierny, T. J. Peters, V. Pascucci,	R. M. Kirby, C. T. Silva;  
-[_Topology Verification for Isosurface Extraction_](http://dx.doi.org/10.1109/TVCG.2011.109);  
+T. Etiene,L. G. Nonato,	C. Scheidegger,	J. Tierny, T. J. Peters, V. Pascucci,	R. M. Kirby, C. T. Silva  
+[_Topology Verification for Isosurface Extraction_](http://dx.doi.org/10.1109/TVCG.2011.109)  
 IEEE Transactions on Visualization and Computer Graphics. Volume 18 Issue 6 June 2012 Pages 952-965 
 
 
