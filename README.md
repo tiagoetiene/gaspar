@@ -1,4 +1,5 @@
-![Isolevel 0 for a randomly generated grid][ex-00]
+![Isolevel 0 for a randomly generated grid][ex-00-low]
+![Isolevel 0 for a randomly generated grid][ex-00-high]
 
 gaspar
 ======
@@ -11,4 +12,5 @@ How to
 Type `gaspar --help` for all the available options.
 
 
-[ex-00]: https://raw.github.com/tiagoetiene/gaspar/master/pic/ex-00.png "Isolevel 0 for a randomly generated grid"
+[ex-00-low]: https://raw.github.com/tiagoetiene/gaspar/master/pic/ex-00-low.png "Isolevel 0 for a randomly generated grid"
+[ex-00-high]: https://raw.github.com/tiagoetiene/gaspar/master/pic/ex-00-high.png "Isolevel 0 for a randomly generated grid"
