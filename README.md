@@ -20,7 +20,7 @@ components: 5
 genus: 10 0 0 0 0 
 euler: -10
 ```
-The isosurface contains five components, four of them contain no handles (genus 0) while one contains 10. The Euler characteristic of the surface is -10. With this information, the expected (right image) andcomputed (left) surfaces can be compared. For example, here's the topological information for the surface shown in the left:
+The isosurface contains five components, four of them contain no handles (genus 0) while one contains 10. The Euler characteristic of the surface is -10. With this information, the expected (right image) and extracted (left) surfaces can be compared. For example, here's the topological information for the surface shown in the left:
 ```
 components: 1
 genus: 14
