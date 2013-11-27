@@ -26,7 +26,7 @@ components: 2
 genus: 19 0
 euler: -34
 ```
-The number of components, genus and euler vary. Thus, the isosurface extraction technique used do not correctly reproduces the topology of the trilinear interpolant. This is not to say that the result shown in the left is wrong, but only that it does not uses the trilienar interpolant a guide for filling up the space.
+The number of components, genus and Euler characteristics are different. Thus, the isosurface extraction technique used does not correctly reproduce the topology of the trilinear interpolant. This is not to say that the result shown in the left is wrong, but only that it does not uses the trilienar interpolant as a guide for building the triangular mesh.
 
 Both images were generated with VTKs Marching Cubes implementation and visualized using [Paraview](http://paraview.org).
 
