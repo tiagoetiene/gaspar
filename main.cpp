@@ -1,3 +1,4 @@
+#include <boost/shared_ptr.hpp>
 #include <boost/program_options.hpp>
 
 #include <omp.h>
@@ -17,13 +18,13 @@
 #include "openGL.hpp"
 #endif
 
-int N = 5;
-int NN = 17 + 16;
+//int N = 5;
+//int NN = 17 + 16;
 
 typedef double Real;
 
-vnv::structuredGrid<Real> grid(N);
-vnv::structuredGrid<Real>* refined_grid;
+boost::shared_ptr<vnv::structuredGrid<Real>> grid;
+boost::shared_ptr<vnv::structuredGrid<Real>> refined_grid;
 
 template<typename _real>
 bool computerInteriorGrid(const vnv::structuredGrid<_real>& grid,
@@ -96,6 +97,12 @@ int main(int argc, char* argv[])
             ("filename",
              value<std::string>()->default_value("/tmp/grid"),
              "output grid filename")
+            ("max-ref",
+             value<unsigned>()->default_value(4),
+             "Maximum number of refinement of the initial input grid")
+            ("N",
+             value<unsigned>()->default_value(5),
+             "The resolution of the output grid")
             ("invariant",
              value<std::string>(),
              "file where topological invariants are going to be saved")
@@ -113,16 +120,23 @@ int main(int argc, char* argv[])
         return 0;
     }
 
-    grid.setLimits(-1.0, -1.0, -1.0, 1.0, 1.0, 1.0);
+    grid.reset(new vnv::structuredGrid<Real>(vm["N"].as<unsigned>()));
+    grid->setLimits(-1.0, -1.0, -1.0, 1.0, 1.0, 1.0);
 
     if(vm.count("invariant") == 0)
     {
-        vnv::random_grid(grid);
-        vnv::write(grid, vm["filename"].as<std::string>(), vm["format"].as<std::string>());
+        vnv::random_grid(*grid.get());
+        vnv::write(*grid.get(),
+                    vm["filename"].as<std::string>(),
+                    vm["format"].as<std::string>());
     }
     if(vm.count("invariant") != 0)
     {
-        refined_grid = new vnv::structuredGrid<Real>(NN);
+        unsigned N  = vm["N"].as<unsigned>();
+        unsigned NN = N + (N-1);
+        unsigned max_refinement = vm["max-ref"].as<unsigned>();
+
+        refined_grid.reset(new vnv::structuredGrid<Real>(NN));
         refined_grid->setLimits(-1.0, -1.0, -1.0, +1.0, +1.0, +1.0);
         refined_grid->set(std::numeric_limits<Real>::max());
 
@@ -132,57 +146,59 @@ int main(int argc, char* argv[])
         unsigned refinements = 0;
         do
         {
-            if(isThereAmbiguity and ++refinements < 4)
+            if(isThereAmbiguity and ++refinements < max_refinement)
                 NN = NN + (NN - 1);
             else
             {
                 std::cout << "# of attempts: " << ++attempts << "\r" << std::flush;
-                vnv::random_grid(grid);
+                vnv::random_grid(*grid.get());
 
                 NN = N + (N - 1);
                 refinements = 0;
             }
 
-            if(refined_grid != 0)
-                delete refined_grid;
-            refined_grid = new vnv::structuredGrid<Real>(NN);
+            refined_grid.reset(new vnv::structuredGrid<Real>(NN));
             refined_grid->setLimits(-1.0, -1.0, -1.0, +1.0, +1.0, +1.0);
-            computerInteriorGrid(grid, *refined_grid);
+            computerInteriorGrid(*grid.get(), *refined_grid.get());
         }
         while((isThereAmbiguity = cases.isThereAnAmbiguousCell(*refined_grid)));
         std::cout << std::endl;
 
 
         NN = NN+(NN-1);
-        delete refined_grid;
-        refined_grid = new vnv::structuredGrid<Real>(NN);
+        refined_grid.reset(new vnv::structuredGrid<Real>(NN));
         refined_grid->setLimits(-1.0, -1.0, -1.0, +1.0, +1.0, +1.0);
-        computerInteriorGrid(grid, *refined_grid);
+        computerInteriorGrid(*grid.get(), *refined_grid.get());
 
         vnv::structuredGrid<int> digitized(NN);
         vnv::structuredGrid<int> bdry(NN+1);
         bdry.set(0);
 
-        vnv::digitize(*refined_grid, digitized);
+        vnv::digitize(*refined_grid.get(), digitized);
         vnv::markBoundary(digitized, bdry);
         std::vector<int> genus = vnv::computeGenus(bdry, digitized);
         std::ofstream f(vm["invariant"].as<std::string>(), std::ios::out);
 
-//        f << "components: " << genus.size() << std::endl;
-//        f << "genus: ";
+        f << "components: " << genus.size() << std::endl;
+        f << "genus: ";
         int euler = 0;
         for(const auto g : genus)
         {
-//            f << g << " ";
+            f << g << " ";
             euler += 2 - 2*g;
         }
-//        f << std::endl;
+        f << std::endl;
         f << "euler: " << euler << std::endl;
         f.close();
 
-        vnv::write(grid, vm["filename"].as<std::string>(), vm["format"].as<std::string>());
+        vnv::write( *grid.get(),
+                    vm["filename"].as<std::string>(),
+                    vm["format"].as<std::string>());
+
         if(vm["refined"].as<bool>())
-            vnv::write(*refined_grid, vm["filename"].as<std::string>()+"-refined", vm["format"].as<std::string>());
+            vnv::write( *refined_grid,
+                        vm["filename"].as<std::string>()+"-refined",
+                        vm["format"].as<std::string>());
 
         //OpenGL
 #ifdef RENDERING
