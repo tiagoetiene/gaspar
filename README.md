@@ -3,7 +3,7 @@ Gaspar
 
 Gaspar is a simple tool for generating random scalar fields with known topology. The main purpose of the tool is to help users verify isosurface extraction algorithms. In addition to the scalar field, Gaspar also provides the *expected topology* of the isosurface at the zero level set. 
 
-Randomly generated scalar fields can generate many interesting isosurfaces with lots of holes and connected components, which makes them interesting test cases.
+Randomly generated scalar fields can generate many interesting isosurfaces with lots of handles and connected components, which makes them interesting test cases.
 
 ![Isolevel 0 for a randomly generated grid][ex-00-low]
 ![Isolevel 0 for a randomly generated grid][ex-00-high]
