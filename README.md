@@ -20,7 +20,7 @@ components: 4
 genus: 16 0 0 0 
 euler: -24
 ```
-The isosurface contains four components, three of them contain no handles (genus 0) while one contains 16. The Euler characteristic of the whole isoruface is -24. Equipped with this information one can compare the expected (right image) againsts the topology computed using Marching Cubes (left):
+The isosurface contains four components, three of them contain no handles (genus 0) while one contains 16. The Euler characteristic of the surface is -24. With this information, the expected (right image) andcomputed (left) surfaces can be compared. For example, here's the topological information for the surface shown in the left:
 ```
 components: 2
 genus: 19 0
