@@ -1,7 +1,9 @@
 gaspar
 ======
 
-Gaspar is a simple tool for generating random scalar fields with known topology. The main purpose of the tool is to help users verify isosurface extraction algorithms. In addition to the scalar field, the tool also provides the *expected topology* of the isosurface at the level-set 0. Randomly generated scalar fields can generate many interesting isosurfaces with lots of holes and connected components, which makes them interesting test cases.
+Gaspar is a simple tool for generating random scalar fields with known topology. The main purpose of the tool is to help users verify isosurface extraction algorithms. In addition to the scalar field, Gaspar also provides the *expected topology* of the isosurface at the zero level set. 
+
+Randomly generated scalar fields can generate many interesting isosurfaces with lots of holes and connected components, which makes them interesting test cases.
 
 ![Isolevel 0 for a randomly generated grid][ex-00-low]
 ![Isolevel 0 for a randomly generated grid][ex-00-high]
@@ -12,7 +14,7 @@ The above two images show an isosurface of a scalar field generated with the fol
 ```
 gaspar --filename="grid" --N=9 --max-ref=5 --invariant="inv.txt" --refined
 ``` 
-The left image is the low resolution grid (`--N=9` means a 9x9x9 grid) that will be fed into an isosurface extraction algorithm (e.g., [Marching Cubes](http://en.wikipedia.org/wiki/Marching_cubes)). The image on the right is the _expected, correct implicit trilinear surface_. This image is the golden standard, so that the user knows what to expect. By visual inspection, the user can determine that the two isosurfaces are very different. Nevertheless, the topological information is saved in the `inv.txt` file so that no visual inspection is needed. In this case, the expected topology is:
+The left image is the low resolution grid (`--N=9` means a 9x9x9 grid) that will be fed into an isosurface extraction algorithm (e.g., [Marching Cubes](http://en.wikipedia.org/wiki/Marching_cubes)). The image on the right is the _expected, correct implicit trilinear surface_. It is the golden standard. By visual inspection, the user can determine that the two isosurfaces are very different. Alternatively, the user can save the topological information in a file (`inv.txt`) so that no visual inspection is needed. For the case shown in the right image, the expected topology is:
 ```
 components: 4
 genus: 16 0 0 0 
