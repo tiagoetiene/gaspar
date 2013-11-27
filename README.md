@@ -12,7 +12,7 @@ The above two images show an isosurface of a scalar field generated with the fol
 ```
 gaspar --filename="grid" --N=9 --max-ref=5 --invariant="inv.txt" ---refined
 ``` 
-The left image is a low resolution grid (9x9x9) whereas the right image shows its refined version. The two isosurfaces are clearly different: the right image contains more components and holes than the left one. Topological information is saved in the `inv.txt` file. Both images where generated with VTKs Marching Cubes implementation and visualized using [Paraview](http://paraview.org).
+The left image is a low resolution grid (9x9x9) whereas the right image shows its refined version. The two isosurfaces are clearly different: the right image contains more components and holes than the left one. Topological information is saved in the `inv.txt` file. Both images were generated with VTKs Marching Cubes implementation and visualized using [Paraview](http://paraview.org).
 
 How to
 ------
