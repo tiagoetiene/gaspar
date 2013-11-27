@@ -10,9 +10,23 @@ Example
 -------
 The above two images show an isosurface of a scalar field generated with the following command:
 ```
-gaspar --filename="grid" --N=9 --max-ref=5 --invariant="inv.txt" ---refined
+gaspar --filename="grid" --N=9 --max-ref=5 --invariant="inv.txt" --refined
 ``` 
-The left image is a low resolution grid (9x9x9) whereas the right image shows its refined version. The two isosurfaces are clearly different: the right image contains more components and holes than the left one. Topological information is saved in the `inv.txt` file. Both images were generated with VTKs Marching Cubes implementation and visualized using [Paraview](http://paraview.org).
+The left image is the low resolution grid (`--N=9` means a 9x9x9 grid) that will fed into an isosurface extraction algorithm (e.g., Marching Cubes). The image on the right shows the expected, correct implicit trilinear surface. This image is the golden standard, so that the user knows what to expect. By visual inspection, the user can determine that the two isosurfaces are very different. Nevertheless, the topological information is saved in the `inv.txt` file so that no visual inspection is needed. In this case, the expected topology is:
+```
+components: 4
+genus: 16 0 0 0 
+euler: -24
+```
+The isosurface contains four components, three of them contain no handles (genus 0) while one contains 16. The Euler characteristic of the whole isoruface is -24. Equipped with this information one can compare the expected (right image) againsts the topology computed using Marching Cubes (left):
+```
+components: 2
+genus: 19 0
+euler: -34
+```
+The number of components, genus and euler vary. Thus, the isosurface extraction technique used do not correctly reproduces the topology of the trilinear interpolant. This is not to say that the result shown in the left is wrong, but only that it does not uses the trilienar interpolant a guide for filling up the space.
+
+Both images were generated with VTKs Marching Cubes implementation and visualized using [Paraview](http://paraview.org).
 
 How to
 ------
