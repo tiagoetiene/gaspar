@@ -16,15 +16,15 @@ gaspar --filename="grid" --N=9 --max-ref=5 --invariant="inv.txt" --refined
 ``` 
 The left image is the low resolution grid (`--N=9` means a 9x9x9 grid) that will be fed into an isosurface extraction algorithm (e.g., [Marching Cubes](http://en.wikipedia.org/wiki/Marching_cubes)). The image on the right is the _expected, correct, implicit trilinear surface_. It is the golden standard. By visual inspection, the user can determine that the two isosurfaces are very different. Alternatively, the user can save the topological information in a file (`inv.txt`) so that no visual inspection is needed. For the case shown in the right image, the expected topology is:
 ```
-components: 4
-genus: 16 0 0 0 
-euler: -24
+components: 5
+genus: 10 0 0 0 0 
+euler: -10
 ```
-The isosurface contains four components, three of them contain no handles (genus 0) while one contains 16. The Euler characteristic of the surface is -24. With this information, the expected (right image) andcomputed (left) surfaces can be compared. For example, here's the topological information for the surface shown in the left:
+The isosurface contains five components, four of them contain no handles (genus 0) while one contains 10. The Euler characteristic of the surface is -10. With this information, the expected (right image) andcomputed (left) surfaces can be compared. For example, here's the topological information for the surface shown in the left:
 ```
-components: 2
-genus: 19 0
-euler: -34
+components: 1
+genus: 14
+euler: -26
 ```
 The number of components, genus and Euler characteristics are different. Thus, the isosurface extraction technique used does not correctly reproduce the topology of the trilinear interpolant. This is not to say that the result shown in the left is wrong, but only that it does not uses the trilienar interpolant as a guide for building the triangular mesh.
 
