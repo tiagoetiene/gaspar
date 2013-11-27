@@ -1,4 +1,4 @@
-gaspar
+Gaspar
 ======
 
 Gaspar is a simple tool for generating random scalar fields with known topology. The main purpose of the tool is to help users verify isosurface extraction algorithms. In addition to the scalar field, Gaspar also provides the *expected topology* of the isosurface at the zero level set. 
