@@ -10,7 +10,7 @@ Randomly generated scalar fields can generate many interesting isosurfaces with 
 
 Example
 -------
-The above two images show an isosurface of a scalar field generated with the following command:
+The two images above show an isosurface of a scalar field generated with the following command:
 ```
 gaspar --filename="grid" --N=9 --max-ref=5 --invariant="inv.txt" --refined
 ``` 
