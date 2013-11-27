@@ -42,7 +42,7 @@ Gaspar is an implementation of the technique described in the TVCG paper _Topolo
 
 [T. Etiene](http://sci.utah.edu/~etiene/),L. G. Nonato,	C. Scheidegger,	J. Tierny, T. J. Peters, V. Pascucci,	R. M. Kirby, C. T. Silva  
 [_Topology Verification for Isosurface Extraction_](http://dx.doi.org/10.1109/TVCG.2011.109)  
-IEEE Transactions on Visualization and Computer Graphics. Volume 18 Issue 6 June 2012 Pages 952-965 
+IEEE Transactions on Visualization and Computer Graphics. Volume 18 Issue 6 June 2012 Pages 952-965  
 [PDF](http://www.lcad.icmc.usp.br/~nonato/pubs/vtiso.pdf)
 
 [ex-00-low]: https://raw.github.com/tiagoetiene/gaspar/master/pic/ex-00-low.png "Isolevel 0 for a randomly generated grid"
