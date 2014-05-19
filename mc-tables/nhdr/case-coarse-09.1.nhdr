@@ -1,0 +1,8 @@
+NRRD0001
+dimension: 3
+type: float
+sizes: 2 2 2
+spacings: 2 2 2
+endian: big
+data file: case-coarse-09.1.raw
+encoding: raw

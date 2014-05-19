@@ -1,0 +1,8 @@
+NRRD0001
+dimension: 3
+type: float
+sizes: 129 129 129
+spacings: 0.015625 0.015625 0.015625
+endian: big
+data file: case-06.2.raw
+encoding: raw
