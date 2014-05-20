@@ -35,6 +35,13 @@ How to
 
 Type `gaspar --help` for all the available options.
 
+
+MC Table 
+-----------
+
+The `mc-table-cases/` folder contains low and high resolution versions of each case of the Marching Cubes table. We make each case available in two file formats: `iso` and `nrrd`. 
+
+
 Publication
 -----------
 
